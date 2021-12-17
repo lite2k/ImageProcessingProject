@@ -1,13 +1,12 @@
-function [ stats1,num ] = DrawBBox( Image )
+function [ Region,num ] = DrawBBox( Image )
 %Region detection and display
 
-stats1 = regionprops (Image, 'BoundingBox','Area');
+Region = regionprops (Image, 'BoundingBox','Area','ConvexArea','Perimeter');
 [L ,num] = bwlabel(Image);
-figure,imshow(Image);
 
 for R=1:num
-  bb = stats1(R).BoundingBox;
-  rectangle('position',bb,'edgecolor','r','linewidth',1.3)
+  bb = Region(R).BoundingBox;
+  rectangle('position',bb,'edgecolor','b','linewidth',1.3)
 end
 
 end
