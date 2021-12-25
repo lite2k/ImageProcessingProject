@@ -1,9 +1,9 @@
 %Read cases and resize operations
 
-orig_im = imread('.\TestCases\Case2\Case2-Rear1.jpg'); 
-%orig_im = imread('.\TestCases\Case2\Case2-Rear2.jpg');
-%orig_im = imread('.\TestCases\Case1\Case1-Front1.bmp');
-%orig_im = imread('.\TestCases\Case2\Case2-Front2.jpg');
+% orig_im = imread('.\TestCases\Case2\Case2-Rear1.jpg'); 
+% orig_im = imread('.\TestCases\Case2\Case2-Rear2.jpg'); 
+% orig_im = imread('.\TestCases\Case1\Case1-Front1.bmp'); 
+% orig_im = imread('.\TestCases\Case2\Case2-Front2.jpg'); 
 
 input_im = imresize(orig_im ,[750 750]);
 empty_im = input_im;
@@ -12,7 +12,7 @@ empty_im(:) = 0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Preprocessing (filter, edge detect., etc....)
 
-procc_im =PostProcc(input_im);
+procc_im = PostProcc(input_im);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,10 +55,10 @@ index = ExtractLogo(Regions,num);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- Logo = Crop(input_im,Regions(index).BoundingBox);
+Logo = Crop(input_im,Regions(index).BoundingBox);
 figure('Name','Logo','NumberTitle','off'),imshow(Logo);
- 
-
+Name = GetCarModel(Logo);
+Name
 
 
 
