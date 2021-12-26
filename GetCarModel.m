@@ -2,13 +2,22 @@ function [ Name ] = GetCarModel( Image )
 kia = imread('./Results/Kia.png');
 opel = imread('./Results/Opel.png');
 hyundai = imread('./Results/Hyundai.png');
-accent = imread('./Results/Accent.png');
 
-if(isequal(hyundai,Image) == 1 || isequal(accent,Image) == 1)
-    Name = "Hyundai";
-elseif(isequal(kia,Image) == 1)
+kia = imresize(kia ,[100 100]);
+opel = imresize(opel ,[100 100]);
+hyundai = imresize(hyundai ,[100 100]);
+
+Image = imresize(Image ,[100 100]);
+
+propkia = ssim(kia,Image);
+propOpel = ssim(opel,Image);
+propHyundai = ssim(hyundai,Image);
+
+if(propkia > propOpel && propkia > propHyundai )
     Name = "Kia";
-elseif(isequal(opel,Image) == 1)
+elseif(propHyundai>propkia && propHyundai>propOpel)
+    Name = "Hyundai";
+elseif(propOpel>propkia && propOpel>propHyundai)
     Name = "Opel";
 else
     Name = "unknown";
